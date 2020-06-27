@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  database:
+    image: mongo:4.2.0
+    container_name: my_movie_database_container
+    environment:
+      - MONGO_INITDB_DATABASE=moviemanagement
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
