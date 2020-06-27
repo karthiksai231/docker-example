@@ -1,15 +1,19 @@
-version: '3'
+version: "3.8"
 
+networks:
+  default:
+    external:
+      name: backend
 services:
-  database:
-    image: mongo:4.2.0
-    container_name: my_movie_database_container
-    environment:
-      - MONGO_INITDB_DATABASE=moviemanagement
+  mymoviedb:
+    image: mongo:latest
+    container_name: mymoviedb
     ports:
       - 27017:27017
-    volumes:
-      - mongodb:/data/db
-
-volumes:
-  mongodb:
+  movie-app-image:
+    image: movie-app-image
+    container_name: movie-app-image
+    ports:
+      - 8080:8080
+    links:
+      - mymoviedb
