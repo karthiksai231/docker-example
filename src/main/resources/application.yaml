@@ -1,0 +1,21 @@
+spring:
+  data:
+    mongodb:
+      host: '${MONGO_HOST:localhost}'
+      port: 27017
+      database: '${MONGO_DB:moviemanagement}'
+
+  cloud:
+    kubernetes:
+      discovery:
+        register: true
+
+      config:
+        enabled: true
+        sources:
+          - namespace: default
+            name: movie-db-config
+      reload:
+        enabled: true
+        mode: polling
+        period: 1000
